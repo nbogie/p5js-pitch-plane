@@ -22,7 +22,6 @@ var messagesRef = null;
 function makeOsc(f, a) {
   var osc = new p5.Oscillator();
   osc.setType('sine');
-  osc.freq(f, 0.05);
   //a simple env to fade in to the given target amplitude.
   //really we just want to avoid clicking.
   //flashMessage("amp: " + a.toPrecision(2), 500);
@@ -33,7 +32,12 @@ function makeOsc(f, a) {
   window.setTimeout(function () {
     osc.amp(a, 0.5); 
   }, 10);
+
   osc.start();
+  
+  //Fixes chrome/p5.js bug where freq must be set AFTER .start()
+  osc.freq(f, 0.05);
+
   //env.play();
   //NOTE: you can't do this - some time must pass or the previous osc.amp(0) setting will be forgotten and a starting vol of 0.5 will cause a click.
   //osc.amp(a, 3.0, 1);
