@@ -261,14 +261,6 @@ function choose(list) {
   return list[index];
 }
 
-function drawSquares() {
-  colors.forEach(function (c, i) { 
-    fill(c); 
-    var jitter =0; //random(2);
-    rect(42*i, 50 + jitter, 40, 40);
-  });
-}
-
 function drawTexts(lines, x, y)
 {
   push();
@@ -350,7 +342,6 @@ function drawFFTWaveform() {
 
 function draw() {
   background(bgColor);
-  drawSquares();
 
   if (showSpectrum) {
     drawFFTSpectrum();
